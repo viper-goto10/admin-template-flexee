@@ -1,0 +1,46 @@
+resources:
+- repo: self
+
+pool:
+  vmImage: 'ubuntu-16.04'
+variables:
+  MagicName: 'admintemplateflexee'
+
+steps:
+- task: Docker@1
+  displayName: 'Build an image'
+  inputs:
+    azureSubscriptionEndpoint: 'Azure RM'
+    azureContainerRegistry: kokoro.azurecr.io
+    dockerFile: Dockerfile
+    useDefaultContext: false
+    buildContext: .
+    imageName: '$(MagicName):$(Build.BuildNumber)'
+    includeLatestTag: true
+    addDefaultLabels: false
+
+- task: Docker@1
+  displayName: 'Push an image'
+  inputs:
+    azureSubscriptionEndpoint: 'Azure RM'
+    azureContainerRegistry: kokoro.azurecr.io
+    command: 'Push an image'
+    imageName: '$(MagicName):$(Build.BuildNumber)'
+
+- task: Docker@1
+  displayName: 'Push an image (latest)'
+  inputs:
+    azureSubscriptionEndpoint: 'Azure RM'
+    azureContainerRegistry: kokoro.azurecr.io
+    command: 'Push an image'
+    imageName: '$(MagicName):latest'
+
+- task: Kubernetes@1
+  displayName: 'Kubectl set an image version'
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'Azure RM'
+    azureResourceGroup: roboti
+    kubernetesCluster: hibiki
+    command: set
+    arguments: 'image deployments/$(MagicName) $(MagicName)=kokoro.azurecr.io/$(MagicName):$(Build.BuildNumber)'

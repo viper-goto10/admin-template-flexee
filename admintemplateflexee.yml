@@ -1,0 +1,102 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: admintemplateflexee
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: admintemplateflexee
+    spec:
+      containers:
+      - name: admintemplateflexee
+        image: kokoro.azurecr.io/admintemplateflexee
+        imagePullPolicy: Always
+        env:                
+        ports:
+        - name: "http"
+          containerPort: 80
+        resources:
+          requests:
+            cpu: 10m
+            memory: 30M
+          limits:
+            cpu: 250m
+            memory: 250M        
+      imagePullSecrets:
+      - name: acr-auth-kokoro
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: admintemplateflexee
+ labels:
+   app: admintemplateflexee
+spec:
+ type: ClusterIP
+ ports:
+ - name: "http"
+   port: 80
+   targetPort: "http"  
+ selector:
+   app: admintemplateflexee
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: admintemplateflexee
+  labels:
+    app: admintemplateflexee
+  annotations:
+    kubernetes.io/ingress.class: nginx    
+    nginx.ingress.kubernetes.io/rewrite-target: /        
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"       
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Goto10-Cluster: hibiki";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "X-Xss-Protection: 1; mode=block";
+      more_set_headers "Content-Security-Policy: default-src 'none'; script-src 'self' https://www.google.com https://www.gstatic.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com; img-src 'self' https://shirokuma.blob.core.windows.net:443 https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' *; manifest-src 'self'; frame-src https://www.google.com";
+      more_set_headers "Referrer-Policy: no-referrer";
+
+      if ($https = "") {
+        rewrite ^ https://$host$request_uri permanent;
+      }
+
+spec:    
+  tls:
+  - hosts:
+    - admintemplateflexee.goto10.cz
+    secretName: admintemplateflexee
+  rules:
+  - host: admintemplateflexee.goto10.cz
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: admintemplateflexee
+          servicePort: "http"
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: admintemplateflexee  
+spec:
+  secretName: admintemplateflexee
+  dnsNames:
+  - admintemplateflexee.goto10.cz
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - admintemplateflexee.goto10.cz
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

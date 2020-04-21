@@ -1,12 +1,16 @@
 {
   "name": "admin-template-flexee",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Admin or app template",
   "main": "index.js",
   "scripts": {
     "watch": "webpack -d --progress --watch --colors",
     "build": "webpack -d --progress",
     "build:prod": "webpack -p"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/viper-goto10/admin-template-flexee.git"
   },
   "browserslist": [
     "Last 4 versions",
@@ -15,7 +19,7 @@
   ],
   "keywords": [],
   "author": "Viper[Goto10]",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",

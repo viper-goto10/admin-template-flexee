@@ -7,7 +7,7 @@ COPY package-lock.json /var/www
 COPY webpack.config.js /var/www
 COPY .babelrc /var/www
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 WORKDIR /var/www
 RUN rm -rf node_modules
 RUN npm i

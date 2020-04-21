@@ -13,7 +13,8 @@ RUN rm -rf node_modules
 RUN npm i
 RUN npm run build:prod
 
-RUN mv /var/www/demo /var/www/html
+RUN mv /var/www/demo/bundles /var/www/html/bundles
+RUN mv /var/www/demo/index.html /var/www/html
 
 RUN a2enmod rewrite
 RUN a2enmod headers

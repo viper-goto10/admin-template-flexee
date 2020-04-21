@@ -1,7 +1,7 @@
 FROM goto10hq/viper-php-7.4
 
 ADD /src /var/www/src
-ADD /demo /var/www/demo
+ADD /demo /var/www/html
 COPY package.json /var/www
 COPY package-lock.json /var/www
 COPY webpack.config.js /var/www
@@ -12,6 +12,8 @@ WORKDIR /var/www
 RUN rm -rf node_modules
 RUN npm i
 RUN npm run build:prod
+
+RUN mv /var/www/demo/bundles /var/www/html/bundles
 
 RUN a2enmod rewrite
 RUN a2enmod headers

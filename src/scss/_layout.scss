@@ -1,0 +1,204 @@
+html,
+body {
+  font-size: $flexee-font-size-root-sm;
+  @include media-breakpoint-up(md) {
+    font-size: $flexee-font-size-root;
+  }
+}
+.wrapper {
+  font-size: $font-size-base;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.navbar {
+  flex-shrink: 0;
+  border-bottom: 1px solid $flexee-layout-border-color;
+  padding: 0.35rem $ggw-half;
+}
+.sidebar-toggle {
+  margin-left: -$ggw-half;
+  cursor: pointer;
+  @include media-breakpoint-up(lg) {
+    display: none !important;
+  }
+}
+.hamburger {
+  width: 1.5rem;
+  height: 1.15rem;
+  position: relative;
+  display: block;
+  & > span {
+    height: 2px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    &:nth-child(1) {
+      top: 0;
+      .sidebar-collapsed & {
+        animation: navbar-toggle-top 2.5s ease-in-out;
+      }
+    }
+    &:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &:nth-child(3) {
+      bottom: 0;
+    }
+  }
+}
+.navbar-light {
+  .hamburger {
+    & > span {
+      background: $navbar-light-color;
+      @include hover-focus() {
+        color: $navbar-light-hover-color;
+      }
+    }
+  }
+}
+.navbar-dark {
+  .hamburger {
+    & > span {
+      background: $navbar-dark-color;
+      @include hover-focus() {
+        color: $navbar-dark-hover-color;
+      }
+    }
+  }
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.content {
+  flex-grow: 1;
+  background: red;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+.sidebar {
+  flex-shrink: 0;
+  width: $flexee-sidebar-icon-width;
+  max-width: $flexee-sidebar-max-width;
+  background: $flexee-sidebar-bg;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 200ms;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  @include media-breakpoint-up(md) {
+    width: $flexee-sidebar-icon-width;
+    position: relative;
+  }
+  .sidebar-entire & {
+    width: $flexee-sidebar-width;
+    .visible-compressed {
+      display: none !important;
+    }
+  }
+  .sidebar-collapsed & {
+    @include media-breakpoint-down(md) {
+      width: 0;
+    }
+  }
+  .sidebar-compressed & {
+    .visible-entire {
+      display: none !important;
+    }
+  }
+}
+%header-and-footer {
+  flex-shrink: 0;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.sidebar-header {
+  @extend %header-and-footer;
+  margin-bottom: 0.25rem;
+  @include pseudo-line() {
+    bottom: 0;
+  }
+}
+.sidebar-footer {
+  @extend %header-and-footer;
+  margin-top: 0.25rem;
+  @include pseudo-line() {
+    top: 0;
+  }
+}
+.sidebar-body {
+  flex-grow: 1;
+  height: 100%;
+}
+.sidebar-nav-row {
+  display: flex;
+}
+.sidebar-nav-icon {
+  width: $flexee-sidebar-icon-width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: (2 * $flexee-sidebar-row-padding-y) + ($line-height-base * $font-size-base);
+  border: 0;
+  background: transparent;
+}
+.sidebar-nav-text {
+  padding-top: $flexee-sidebar-row-padding-y;
+  padding-bottom: $flexee-sidebar-row-padding-y;
+  flex-grow: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sidebar-nav-group {
+  &:not(.active) {
+    .sidebar-nav-subitem {
+      display: none;
+    } 
+  }
+  .sidebar-nav-item, .sidebar-nav-subitem {
+    text-decoration: none;
+    position: relative;
+    color: $body-color;
+    @include hover-focus-active {
+      text-decoration: none;
+    }
+  }
+  &.active {
+    background: darken($flexee-sidebar-bg, 5);
+    .sidebar-nav-item, .sidebar-nav-subitem {
+      &:before {
+        @include pseudo();
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 4px;
+        background: darken($flexee-sidebar-bg, 20);
+      }
+      &.router-link-exact-active {
+        background: darken($flexee-sidebar-bg, 10);
+        font-weight: bold;
+        &:before {
+          background: $primary;
+        }
+      }
+    }
+  }
+}
+
+.frame {
+  background: $white;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  .container-fluid {
+    padding-top: $ggw;
+  }
+}

@@ -1,0 +1,68 @@
+$pure-radio-border-color: darken($primary, 10) !default;
+$pure-radio-border: 1px solid #{$pure-radio-border-color} !default;
+$pure-radio-checkable-size: 1.2rem !default;
+$pure-radio-checked-color: $primary !default;
+$pure-radio-bg-color: #fff !default;
+
+.pure-radio {
+	label {
+		font-weight: normal;
+		cursor: pointer;
+		padding-top: 3px;
+		padding-left: $pure-radio-checkable-size + 0.6rem;
+		display: inline-block;
+		position: relative;
+	}
+	input {
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0;
+		z-index: -1;
+		& + i {
+			display: inline-block;
+			width: $pure-radio-checkable-size;
+			height: $pure-radio-checkable-size;
+			border: $pure-radio-border;
+			background: $pure-radio-bg-color;
+			overflow: hidden;
+			position: absolute;
+			top: 0.2rem;
+			left: 0;
+			border-radius: 50%;
+			&:before {
+				@include pseudo();
+				transform: translate(-50%, -50%);
+				display: none;
+				width: $pure-radio-checkable-size / 2;
+				height: $pure-radio-checkable-size / 2;
+				font-size: 12px;
+				left: 50%;
+				top: 50%;
+				margin: 0;
+				background-color: $pure-radio-checked-color;
+				border-radius: 50%;
+			}
+
+		}
+		&:checked + i {
+			&:before {
+				display: block;
+			}
+		}
+	}
+}
+.pure-radio-form-group {
+	& > label {
+		color: $body-color;
+	}
+	&.pure-radio-list-inline {
+		.pure-radio-list {
+			margin-left: -$ggw-half;
+		}
+		.pure-radio {
+			display: inline-block;
+			margin-left: $ggw-half;
+		}
+	}
+}

@@ -1,0 +1,17 @@
+/* HELPERS */
+$ggw: $grid-gutter-width !default;
+$ggw-half: $ggw / 2 !default;
+
+$flexee-font-size-root: 15px !default;
+$flexee-font-size-root-sm: 12px !default;
+
+$flexee-sidebar-bg: darken($light, 4) !default;
+$flexee-sidebar-icon-width: 3rem !default;
+$flexee-sidebar-row-padding-y: 0.65rem !default;
+$flexee-sidebar-width: 18.5rem !default;
+$flexee-sidebar-max-width: 280px !default;
+
+$flexee-layout-border-color: #ccc !default;
+
+$flexee-src-path: '~admin-template-flexee/src' !default;
+$flexee-fontello-path: '/fontello/scss/fontello.css' !default;

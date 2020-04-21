@@ -1,0 +1,243 @@
+@keyframes sk-rotateplane {
+	0% {
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	}
+
+	50% {
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+	}
+
+	100% {
+		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+	}
+}
+@keyframes showHideDot {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes navbar-toggle-top {
+	0% {
+		top: 0;
+	}
+	50% {
+		top: 50%;
+      	transform: translateY(-50%);
+	}
+	100% {
+		transform: rotate(-45deg)
+	}
+}
+@keyframes navbar-toggle-bottom {
+	0% {
+		bottom: 0;
+	}
+	50% {
+		bottom: 50%;
+      	transform: translateY(-50%);
+	}
+	100% {
+		transform: rotate(45deg)
+	}
+}
+.loading {
+	$zIndex: 2;
+	position: relative;
+	z-index: $zIndex;
+
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: rgba(#fff, 0.7);
+		z-index: $zIndex + 1;
+	}
+
+	&:after {
+		content: "";
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		z-index: $zIndex + 2;
+		top: 50%;
+		left: 50%;
+		margin: -10px 0 0 -10px;
+		background-color: #333;
+		animation: sk-rotateplane 1.2s infinite ease-in-out;
+	}
+}
+.loading-dots {
+	text-align: center;
+	z-index: 5;
+	vertical-align: middle;
+	display: inline;
+	& > * {
+		display: inline-block;
+		margin-left: 0.2em;
+		margin-right: 0.2em;
+		position: relative;
+		width: 0.5em;
+		height: 0.5em;
+		border-radius: 50%;
+		background: $danger;
+		line-height: 1;
+		opacity: 0;
+		animation: showHideDot 2.5s ease-in-out infinite;
+		&:before {
+			content: "\2022";
+		}
+		&:nth-child(1) {
+			animation-delay: 0.2s;
+		}
+		&:nth-child(2) {
+			animation-delay: 0.4s;
+		}
+		&:nth-child(3) {
+			animation-delay: 0.6s;
+		}
+	}
+}
+.visible-lg-min {
+	@include media-breakpoint-down(md) {
+		display: none !important;
+	}
+}
+.visible-md-min {
+	@include media-breakpoint-down(sm) {
+		display: none !important;
+	}
+}
+.visible-sm-min {
+	@include media-breakpoint-down(xs) {
+		display: none !important;
+	}
+}
+.visible-md-max {
+	@include media-breakpoint-up(lg) {
+		display: none !important;
+	}
+}
+.visible-sm-max {
+	@include media-breakpoint-up(md) {
+		display: none !important;
+	}
+}
+.visible-xs-max {
+	@include media-breakpoint-up(sm) {
+		display: none !important;
+	}
+}
+.help-block.text-danger {
+	color: $danger;
+	display: block;
+	margin-top: 0.2rem;
+}
+.errors {
+	@extend .alert;
+	@extend .alert-danger;
+	ul {
+		@extend %list-reset;
+	}
+}
+.error {
+	color: $danger;
+}
+.btn,
+button {
+	@include hover-focus-active {
+		outline: none;
+	}
+}
+em {
+	font-weight: bold;
+	color: $primary;
+	font-style: normal;
+}
+.custom-scrollbar {
+	&::-webkit-scrollbar {
+		width: 12px;
+		background: transparent;
+	}
+	&::-webkit-scrollbar-track {
+	}
+	&::-webkit-scrollbar-thumb {
+		border: 3px solid transparent;
+		border-radius: 5px;
+		background-color: $primary;
+		background-image: linear-gradient(
+			45deg,
+			rgba(#fff, 0.2) 25%,
+			transparent 25%,
+			transparent 50%,
+			rgba(#fff, 0.2) 50%,
+			rgba(#fff, 0.2) 75%,
+			transparent 75%,
+			transparent
+		);
+		background-clip: padding-box;
+	}
+}
+.vertical-scroll {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.form-group {
+	position: relative;
+}
+.form-control:focus ~ .floating-label,
+.form-control:not(:focus):valid ~ .floating-label,
+.form-control[readonly] ~ .floating-label {
+	top: $input-padding-y / 5;
+	font-size: 0.6rem;
+	opacity: 1;
+}
+.floating-label {
+	position: absolute;
+	pointer-events: none;
+	left: $input-padding-x;
+	top: calc(#{$input-padding-y} + #{$input-border-width});
+	transition: 0.2s ease all;
+	color: #9b9b9b;
+	line-height: $input-line-height;
+	font-size: 1rem;
+	.error {
+		color: $danger;
+	}
+	.form-group-lg & {
+		top: calc(#{$input-padding-y} + #{$input-border-width});
+	}
+}
+.w-max-1 {
+	max-width: 200px;
+}
+.w-max-2 {
+	max-width: 250px;
+}
+.w-max-3 {
+	max-width: 300px;
+}
+.w-max-4 {
+	max-width: 350px;
+}
+.w-max-5 {
+	max-width: 400px;
+}
+.w-max-6 {
+	max-width: 450px;
+}
+.w-max-7 {
+	max-width: 500px;
+}

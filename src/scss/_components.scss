@@ -50,9 +50,8 @@
 	}
 }
 .loading {
-	$zIndex: 2;
 	position: relative;
-	z-index: $zIndex;
+	z-index: $flexee-loading-z-index;
 
 	&:before {
 		content: "";
@@ -63,7 +62,7 @@
 		bottom: 0;
 		right: 0;
 		background: rgba(#fff, 0.7);
-		z-index: $zIndex + 1;
+		z-index: $flexee-loading-z-index + 1;
 	}
 
 	&:after {
@@ -71,7 +70,7 @@
 		width: 20px;
 		height: 20px;
 		position: absolute;
-		z-index: $zIndex + 2;
+		z-index: $flexee-loading-z-index + 2;
 		top: 50%;
 		left: 50%;
 		margin: -10px 0 0 -10px;

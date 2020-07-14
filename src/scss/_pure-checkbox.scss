@@ -5,6 +5,7 @@ $pure-checkbox-checked-color: $primary !default;
 $pure-checkbox-bg-color: #fff !default;
 $pure-checkbox-border-radius: 2px !default;
 $pure-checkbox-checked-size: 0.75 * $pure-checkbox-checkable-size !default;
+$pure-checkbox-content: '\e800' !default;
 
 .pure-checkbox {
 	margin-bottom: 20px;
@@ -49,7 +50,7 @@ $pure-checkbox-checked-size: 0.75 * $pure-checkbox-checkable-size !default;
 		}
 		&:checked + i {
 			&:before {
-				content: '\e800';
+				content: $pure-checkbox-content;
 			}
 		}
 	}

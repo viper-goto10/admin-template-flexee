@@ -110,6 +110,7 @@ body {
   left: 0;
   top: 0;
   bottom: 0;
+  z-index: $flexee-sidebar-z-index;
   @include media-breakpoint-up(md) {
     width: $flexee-sidebar-icon-width;
     position: relative;

@@ -1,4 +1,4 @@
-FROM goto10hq/viper-php-7.4
+FROM goto10hq/viper-php-8.1
 
 ADD /src /var/www/src
 ADD /demo /var/www/demo

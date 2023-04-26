@@ -1,6 +1,6 @@
 {
   "name": "admin-template-flexee",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Admin or app template",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,6 @@
   "author": "Viper[Goto10]",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^5.2.3",
     "jquery": "^3.6.3",
     "popper.js": "^1.16.1"
   },
@@ -33,6 +32,7 @@
     "babel-loader": "^9.1.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-minify": "^0.5.2",
+    "bootstrap": "^4.6.2",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "file-loader": "^6.2.0",

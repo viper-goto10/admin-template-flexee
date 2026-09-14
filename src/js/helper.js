@@ -20,12 +20,11 @@ export default {
             this.isSidebarCollapsed = !this.isSidebarCollapsed;
         },
         scrollToError() {
-            var $outer = $('#frame-scrollable')
-            var $errors = $outer.find('.errors, .error');
-            if ($errors.length > 0) {
-                $outer.animate({
-                    scrollTop: $outer.scrollTop() - $outer.offset().top + $errors.filter(":first").offset().top - 15
-                });
+            const outer = document.getElementById('frame-scrollable');
+            if (!outer) return;
+            const firstError = outer.querySelector('.errors, .error');
+            if (firstError) {
+                outer.scrollTop += firstError.getBoundingClientRect().top - outer.getBoundingClientRect().top - 15;
             }
         }
 	}

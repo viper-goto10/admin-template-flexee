@@ -1,6 +1,6 @@
 {
   "name": "admin-template-flexee",
-  "version": "0.0.17",
+  "version": "1.0.0",
   "description": "Admin or app template",
   "main": "index.js",
   "scripts": {
@@ -20,36 +20,35 @@
   "keywords": [],
   "author": "Viper[Goto10]",
   "license": "MIT",
-  "dependencies": {
-    "jquery": "^3.6.3",
-    "popper.js": "^1.16.1"
-  },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/polyfill": "^7.8.7",
-    "@babel/preset-env": "^7.20.2",
-    "autoprefixer": "^10.4.13",
-    "babel-loader": "^9.1.2",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-minify": "^0.5.2",
-    "bootstrap": "^4.6.2",
-    "css-loader": "^6.7.3",
-    "css-minimizer-webpack-plugin": "^4.2.2",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@vue/compiler-sfc": "^3.5.42",
+    "autoprefixer": "10.5.5",
+    "babel-loader": "^10.1.1",
+    "bootstrap": "^5.3.8",
+    "core-js": "^3.50.0",
+    "css-loader": "^7.1.5",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "file-loader": "^6.2.0",
-    "mini-css-extract-plugin": "^2.7.2",
-    "node-sass": "^8.0.0",
+    "mini-css-extract-plugin": "^2.10.2",
     "postcss-loader": "^7.0.2",
     "process": "^0.11.10",
     "resolve-url-loader": "^5.0.0",
-    "sass-loader": "^13.2.0",
+    "sass-embedded": "^1.104.0",
+    "sass-loader": "^17.0.1",
     "url-loader": "^4.1.1",
-    "vue": "^2.6.14",
-    "vue-loader": "^15.9.8",
-    "vue-router": "^3.5.3",
-    "vue-template-compiler": "^2.6.14",
-    "vuelidate": "^0.7.7",
-    "vuex": "^3.6.2",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "vue": "^3.5.42",
+    "vue-loader": "^17.4.2",
+    "vue-router": "^5.3.1",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
+    "vuex": "^4.1.0",
+    "webpack": "^5.110.3",
+    "webpack-cli": "^7.2.3"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "core-js@3.50.0": true
   }
 }

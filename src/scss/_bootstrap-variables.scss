@@ -1,5 +1,13 @@
 $body-bg: #f2f2f2 !default;
 $body-color: #161616 !default;
 
+// shadows Dart Sass's built-in 2-arg CSS rem() (remainder) function
+@function rem($px, $base: 16px) {
+  @return $px / $base * 1rem;
+}
+
+$ggw: rem(15px) !default;
+$ggw-half: $ggw / 2 !default;
+
 $font-size-base: 1rem !default;
 $line-height-base: 1.3 !default;

@@ -7,10 +7,10 @@
                 <div class="form-group">
                     <input type="text" class="form-control" required v-model="name" />
                     <span class="floating-label">
-                        <span v-if="!$v.name.$error">Uživatelské jméno</span>
+                        <span v-if="!v$.name.$error">Uživatelské jméno</span>
                         <span
                             class="error"
-                            v-if="$v.name.$error & !$v.name.required"
+                            v-if="v$.name.$error && !v$.name.required"
                         >Uživatelské jméno je povinné.</span>
                     </span>
                 </div>
@@ -27,14 +27,14 @@
 </template>
 
 <script>
-import Vue from "vue";
-import Vuelidate from "vuelidate";
-Vue.use(Vuelidate);
-import {
-    required
-} from "vuelidate/lib/validators";
+import { nextTick } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 
 export default {
+    setup() {
+        return { v$: useVuelidate() }
+    },
     data() {
         return {
             name: ''
@@ -43,9 +43,9 @@ export default {
     methods: {
         submit() {
             var self = this;
-            this.$v.$touch();
-            if (this.$v.$invalid) {
-                Vue.nextTick(function() {
+            this.v$.$touch();
+            if (this.v$.$invalid) {
+                nextTick(function() {
                     self.$parent.scrollToError();
                 });
                 return false;

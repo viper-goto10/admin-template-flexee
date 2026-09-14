@@ -1,12 +1,10 @@
 import '../scss/demo.scss';
-import { dropdown, collapse } from 'bootstrap';
-import VueRouter from 'vue-router';
-import Vue from 'vue';
-import Vuex from 'vuex'
+import { Collapse, Dropdown } from 'bootstrap';
+import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import { createStore } from 'vuex'
 
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
+const store = createStore({
     state: {
         user: {
             isLoggedIn: false
@@ -19,15 +17,14 @@ const store = new Vuex.Store({
     }
 })
 
-var $ = require("jquery");
-
 import Layout from '../vue/layout.vue'
 import Dashboard from '../vue/pages/dashboard.vue'
 import SignIn from '../vue/pages/sign-in.vue'
 import Parent from '../vue/pages/parent.vue'
 import Child from '../vue/pages/child.vue'
 
-const router = new VueRouter({
+const router = createRouter({
+    history: createWebHistory(),
     routes: [
         { path: '/', redirect: '/dashboard'},
         { path: '/dashboard', component: Dashboard },
@@ -46,13 +43,7 @@ router.beforeEach((to, from, next) => {
     next();
 });
 
-Vue.use(VueRouter);
-
-const app = new Vue({
-    el: '#app',
-    router,
-    store,
-    render: h => h(Layout, {
-        params: {}
-    })
-})
+const app = createApp(Layout)
+app.use(router)
+app.use(store)
+app.mount('#app')

@@ -70,7 +70,7 @@ body {
   .hamburger {
     & > span {
       background: $navbar-light-color;
-      @include hover-focus() {
+      &:hover, &:focus {
         color: $navbar-light-hover-color;
       }
     }
@@ -80,7 +80,7 @@ body {
   .hamburger {
     & > span {
       background: $navbar-dark-color;
-      @include hover-focus() {
+      &:hover, &:focus {
         color: $navbar-dark-hover-color;
       }
     }
@@ -185,7 +185,7 @@ body {
     text-decoration: none;
     position: relative;
     color: $body-color;
-    @include hover-focus-active {
+    &:hover, &:focus, &:active {
       text-decoration: none;
     }
   }
